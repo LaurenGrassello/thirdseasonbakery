@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>User Login</title>
+    <script src="{{ url_for('static', filename= 'css/style.css') }}"></script>
+    <script src="{{ url_for('static', filename= 'img') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 17px;
+            padding: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        img{
+            width: 300px;
+            height: 200px;
+            margin-left: 35%;
+        }
+    </style>
+
+</head>
+<body class="bg-warning p-2" style="--bs-bg-opacity: .5;">
+    <div class="container">
+        <nav class="d-flex justify-content-end">
+            <a class="nav-item p-2 text-decoration-none text-black d-flex" href="/">Home</a>
+            <a class="nav-item p-2 text-decoration-none text-black" href="/menu">Menu
+            <a class="nav-item p-2 text-decoration-none text-black d-flex" href=mailto:
+            laurenodalen@gmail.com?subject="HTML link">Contact</a>
+        </nav>
+        <div>
+            <img src="../static/img/LaurenTransparent (6).png" alt="logo">
+            <form action="/register" method ="post">
+                <h3 class="text-secondary">Create account to place order</h3>
+                
+                {% with messages = get_flashed_messages(category_filter=['register']) %}
+                {% if messages %}
+                <div>
+                    <p>Attention!</p>
+                    {% for message in messages %}
+                    <p>{{message}}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% endwith %}
+
+                <div class="bg-warning p-2 form-group width: 18rem;">
+                    <label class="form-control form-control-sm text-secondary"  for="first_name">First Name:</label>
+                    <input class="form-control form-control-sm text-secondary"  type="text" name="first_name">
+                    <label class="form-control form-control-sm text-secondary"  for="last_name">Last Name:</label>
+                    <input class="form-control form-control-sm text-secondary"  type="text" name="last_name">
+                    <label class="form-control form-control-sm text-secondary"  for="email">Email:</label>
+                    <input class="form-control form-control-sm text-secondary"  type="text" name="email">
+                    <label class="form-control form-control-sm text-secondary"  for="password">Password:</label>
+                    <input class="form-control form-control-sm text-secondary"  type="password" name="password">
+                    <label class="form-control form-control-sm text-secondary"  for="confirm_password">Confirm Password:</label>
+                    <input class="form-control form-control-sm text-secondary"  type="password" name="confirm_password">
+                </div>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <form action="/login" method="post">
+            <h3 class="text-secondary">Login to place order</h3>
+
+            {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+            <div>
+                <p>Attention!</p>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+
+            <div class="form-group bg-warning p-2">
+                <label class="form-control form-control-sm text-secondary"  for="email">Email:</label>
+                <input class="form-control form-control-sm text-secondary"  type="text" name="email">
+                <label class="form-control form-control-sm text-secondary"  for="password">Password:</label>
+                <input class="form-control form-control-sm text-secondary"  type="password" name="password">
+            </div>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+</body>
+</html>
